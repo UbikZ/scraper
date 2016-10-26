@@ -3,9 +3,7 @@ import falcon
 
 
 class JsonBodyParser(object):
-
-    @staticmethod
-    def process_request(req):
+    def process_request(self, req, res):
         if req.content_type == 'application/json':
             body = req.stream.read().decode('utf-8')
             try:
