@@ -1,0 +1,7 @@
+api:
+  build: api
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:api/
+  env_file: api/.env
