@@ -13,4 +13,4 @@ ADD . /src/
 
 EXPOSE 5000
 
-CMD gunicorn --reload -b 0.0.0.0:5000 app:api
+CMD gunicorn --reload -c /src/gunicorn/config.py app:api
