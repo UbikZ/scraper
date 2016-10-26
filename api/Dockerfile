@@ -3,11 +3,13 @@ FROM python:2.7.12-alpine
 MAINTAINER Gabriel Malet
 
 RUN apk update \
-  && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/*
 
-ADD . /src/
+ADD requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
 WORKDIR /src
+ADD . /src/
 
 EXPOSE 5000
 
