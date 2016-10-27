@@ -2,25 +2,24 @@ import falcon
 from cerberus import Validator
 
 fields = {
-    'username': {
+    'url': {
         'type': 'string',
-        'required': True,
-        'minlength': 3,
-    },
-    'type': {
-        'type': 'list',
-        'allowed': ['admin', 'user'],
+        'regex': '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',
         'required': True,
     },
-    'email': {
-        'type': 'string',
-        'regex': '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$',
+    'idFeedItem': {
+        'type': 'integer',
         'required': True,
     },
+    'isEnabled': {
+        'type': 'boolean',
+        'required': True,
+        'min': 0,
+    }
 }
 
 
-class UserValidate(object):
+class FeedValidate(object):
     @staticmethod
     def create(req, res, resource, params):
         test = Validator(fields)

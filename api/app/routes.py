@@ -1,8 +1,8 @@
 import sys
-from app.resource.user.handler import *
+from app.resource.feed.handler import *
 from app.config import API_VERSION
 
-routes = ['user']
+routes = ['feed']
 
 
 class Routes(object):

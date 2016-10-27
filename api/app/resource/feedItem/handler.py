@@ -1,8 +1,8 @@
 import falcon
 import json
 
-class UserResource(object):
 
+class FeedItemResource(object):
     # @falcon.before()
     def on_post(self, req, res):
         res.status = falcon.HTTP_201
