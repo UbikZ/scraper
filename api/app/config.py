@@ -1,6 +1,4 @@
 import os
 
 API_VERSION = 1
-DB_URL = ""
-DB_HOST = ""
-DB_PWD = ""
+DB_CONN_STRING = os.getenv('DB_CONN_STRING')

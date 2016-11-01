@@ -3,7 +3,8 @@ FROM python:2.7.12-alpine
 MAINTAINER Gabriel Malet
 
 RUN apk update \
-  && rm -rf /var/cache/apk/*
+    && apk add gcc musl-dev python-dev postgresql-dev \
+    && rm -rf /var/cache/apk/*
 
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt

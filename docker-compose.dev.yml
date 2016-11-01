@@ -1,7 +1,17 @@
+pgsql:
+  image: kiasaki/alpine-postgres
+  ports:
+    - "5432:5432"
+  volumes:
+    - /srv/docker/scraper/db:/var/lib/postgresql/data
+  env_file: db/.env
 api:
   build: api
   ports:
     - "5000:5000"
+  links:
+    - pgsql
   volumes:
     - ./api:/src
+    - /srv/docker/scraper/log:/var/log
   env_file: api/.env

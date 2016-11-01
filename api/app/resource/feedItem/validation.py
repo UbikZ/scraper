@@ -2,8 +2,8 @@ import falcon
 from cerberus import Validator
 
 fields = {
-    'url': {
-        'type': 'string',
+    'id': {
+        'type': 'integer',
         'regex': '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',
         'required': True,
     },
@@ -19,7 +19,7 @@ fields = {
 }
 
 
-class FeedValidate(object):
+class FeedItemValidate(object):
     @staticmethod
     def create(req, res, resource, params):
         test = Validator(fields)
