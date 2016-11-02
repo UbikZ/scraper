@@ -2,13 +2,17 @@ from __future__ import with_statement
 from sys import path
 from os import getenv, getcwd
 from alembic import context
-from sqlalchemy import engine_from_config, pool
+from sqlalchemy import engine_from_config, pool, MetaData
 from logging.config import fileConfig
 
 # Hack to find modules
 path.append(getcwd())
 
+# We require our models
 from app.resource.feed.model import FeedModel
+from app.resource.feedItem.model import FeedItemModel
+from app.resource.feedType.model import FeedTypeModel
+from app.resource.user.model import UserModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -18,11 +22,25 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
+
+def combine_metadata(*args):
+    m = MetaData()
+    for metadata in args:
+        for table in metadata.tables.values():
+            table.tometadata(m)
+    return m
+
+
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = FeedModel.metadata
+target_metadata = combine_metadata(
+    FeedModel.metadata,
+    FeedItemModel.metadata,
+    FeedTypeModel.metadata,
+    UserModel.metadata
+)
 
 
 # other values from the config, defined by the needs of env.py,

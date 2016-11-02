@@ -19,8 +19,3 @@ class Database(object):
         connection.set_session(autocommit=True)
 
         return connection
-
-    @staticmethod
-    def create_model():
-        for model in ['feed']:
-            getattr(sys.modules['app.resource.{}.model'.format(model)], '{}Model'.format(model.title()))()
