@@ -24,9 +24,9 @@ def upgrade():
 def upgrade_feed():
     op.create_table('feed',
                     sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('ref_key', sa.String(length=100), nullable=False, unique=True),
+                    sa.Column('ref_key', sa.String(length=100), nullable=False, unique=True, index=True),
                     sa.Column('url', sa.String(length=255), nullable=False),
-                    sa.Column('is_enabled', sa.Boolean(), nullable=True),
+                    sa.Column('is_enabled', sa.Boolean(), nullable=True, index=True),
                     sa.PrimaryKeyConstraint('id')
                     )
 

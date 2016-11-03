@@ -7,6 +7,6 @@ Base = declarative_base()
 class FeedModel(Base):
     __tablename__ = 'feed'
     id = Column(Integer, Sequence('feed_id_seq'), primary_key=True)
-    label = Column(String(100), nullable=False)
+    ref_key = Column(String(100), nullable=False, unique=True, index=True)
     url = Column(String(255), nullable=False)
-    is_enabled = Column(Boolean, default=False)
+    is_enabled = Column(Boolean, default=False, index=True)
