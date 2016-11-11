@@ -26,7 +26,7 @@ def upgrade():
                       result INTEGER;
                     BEGIN
                       INSERT INTO feed (ref_key, url, is_enabled) VALUES (v_ref_key, v_url, v_is_enabled)
-                       ON CONFLICT ON CONSTRAINT feed_ref_key_key
+                       ON CONFLICT ON CONSTRAINT "c_unique_feed_refKey"
                          DO UPDATE SET url = v_url, is_enabled = v_is_enabled RETURNING id INTO result;
                       RETURN result;
                     END;
